@@ -8,16 +8,16 @@
 </head>
 <body>
     <h1>Election Poll: [Location: Start Town Tower 4/ Date: 27.09.2023]</h1>
-    <form id="electionPollForm">
-        <h2>Instructions:</h2>
-        <ol>
-            <li>You have 8 votes in this election. You can vote for up to 8 candidates.</li>
-            <li>Please click the checkboxes next to the names of the candidates you wish to vote for.</li>
-            <li>Any ballot with more than 8 marked candidates will be considered invalid.</li>
-        </ol>
+<form id="electionPollForm" method="post" action="process_poll.php">
+    <h2>Instructions:</h2>
+    <ol>
+        <li>You have 8 votes in this election. You can vote for up to 8 candidates.</li>
+        <li>Please click the checkboxes next to the names of the candidates you wish to vote for.</li>
+        <li>Any ballot with more than 8 marked candidates will be considered invalid.</li>
+    </ol>
 
-        <h2>Candidates:</h2>
-        <ul>
+    <h2>Candidates:</h2>
+    <ul>
             <li><input type="checkbox" name="candidate" value="Candidate 1"> Candidate 1</li>
             <li><input type="checkbox" name="candidate" value="Candidate 2"> Candidate 2</li>
             <li><input type="checkbox" name="candidate" value="Candidate 3"> Candidate 3</li>
@@ -36,23 +36,27 @@
  	    <li><input type="checkbox" name="candidate" value="Candidate 16"> Candidate 16</li>
             <li><input type="checkbox" name="candidate" value="Candidate 17"> Candidate 17</li>
             <li><input type="checkbox" name="candidate" value="Candidate 18"> Candidate 18</li>
-        </ul>
+ </ul>
 
-        <h2>Your Ballot:</h2>
-        <ul>
-            <!-- Selected candidates will be displayed here -->
-        </ul>
+    <h2>Your Ballot:</h2>
+    <ul>
+        <!-- Selected candidates will be displayed here -->
+    </ul>
 
-        <button type="submit">Submit</button>
-    </form>
+    <input type="hidden" name="selectedCandidates" id="selectedCandidates" value="">
+    <button type="submit">Submit</button>
+</form>	
+    <input type="hidden" name="selectedCandidates" id="selectedCandidates" value="">
+    <button type="submit">Submit</button>
+
 
     <script>
-        // JavaScript to handle user interactions
+// JavaScript to handle user interactions
 document.addEventListener("DOMContentLoaded", function () {
     const form = document.getElementById("electionPollForm");
     const checkboxes = form.querySelectorAll("input[type='checkbox']");
     const selectedCandidatesList = form.querySelector("ul");
-    const selectedCandidatesData = []; // Array to store selected candidates
+    const selectedCandidatesInput = form.querySelector("#selectedCandidates");
 
     form.addEventListener("submit", function (event) {
         event.preventDefault();
@@ -72,11 +76,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 selectedCandidatesList.appendChild(listItem);
             });
 
-            // Store the selected candidates' data
-            selectedCandidatesData.push(selectedCandidates);
-
-            // Output the selected candidates' data to the console (for testing)
-            console.log("Selected Candidates Data:", selectedCandidatesData);
+            // Set the selected candidates in the hidden input field
+            selectedCandidatesInput.value = selectedCandidates.join(', ');
+            form.submit();
         } else {
             alert("You selected more than 8 candidates. Please select up to 8 candidates.");
         }
