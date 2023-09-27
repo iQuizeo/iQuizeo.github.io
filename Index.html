@@ -59,33 +59,41 @@
 
     <script>
         // JavaScript to handle user interactions
-        document.addEventListener("DOMContentLoaded", function () {
-            const form = document.getElementById("electionPollForm");
-            const checkboxes = form.querySelectorAll("input[type='checkbox']");
-            const selectedCandidatesList = form.querySelector("ul");
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("electionPollForm");
+    const checkboxes = form.querySelectorAll("input[type='checkbox']");
+    const selectedCandidatesList = form.querySelector("ul");
+    const selectedCandidatesData = []; // Array to store selected candidates
 
-            form.addEventListener("submit", function (event) {
-                event.preventDefault();
+    form.addEventListener("submit", function (event) {
+        event.preventDefault();
 
-                // Count the number of selected candidates
-                const selectedCandidates = Array.from(checkboxes)
-                    .filter(candidate => candidate.checked)
-                    .map(candidate => candidate.value);
+        // Count the number of selected candidates
+        const selectedCandidates = Array.from(checkboxes)
+            .filter(candidate => candidate.checked)
+            .map(candidate => candidate.value);
 
-                // Check if the number of selected candidates is not more than 8
-                if (selectedCandidates.length <= 8) {
-                    // Display the selected candidates
-                    selectedCandidatesList.innerHTML = "";
-                    selectedCandidates.forEach(candidate => {
-                        const listItem = document.createElement("li");
-                        listItem.textContent = candidate;
-                        selectedCandidatesList.appendChild(listItem);
-                    });
-                } else {
-                    alert("You selected more than 8 candidates. Please select up to 8 candidates.");
-                }
+        // Check if the number of selected candidates is not more than 8
+        if (selectedCandidates.length <= 8) {
+            // Display the selected candidates
+            selectedCandidatesList.innerHTML = "";
+            selectedCandidates.forEach(candidate => {
+                const listItem = document.createElement("li");
+                listItem.textContent = candidate;
+                selectedCandidatesList.appendChild(listItem);
             });
-        });
+
+            // Store the selected candidates' data
+            selectedCandidatesData.push(selectedCandidates);
+
+            // Output the selected candidates' data to the console (for testing)
+            console.log("Selected Candidates Data:", selectedCandidatesData);
+        } else {
+            alert("You selected more than 8 candidates. Please select up to 8 candidates.");
+        }
+    });
+});
+
     </script>
 </body>
 </html>
