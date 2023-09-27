@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Election Poll</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Election Poll: [Location: Start Town Tower 4/ Date: 27.09.2023]</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Election Poll</title>
+</head>
+<body>
+    <h1>Election Poll: [Location/Date]</h1>
+
+    <form id="electionPollForm">
+        <h2>Instructions:</h2>
+        <ol>
+            <li>You have 8 votes in this election. You can vote for up to 8 candidates.</li>
+            <li>Please click the checkboxes next to the names of the candidates you wish to vote for.</li>
+            <li>Any ballot with more than 8 marked candidates will be considered invalid.</li>
+        </ol>
+
+        <h2>Candidates:</h2>
+        <ul>
+            <li><input type="checkbox" name="candidate" value="Candidate 1"> Candidate 1</li>
+            <li><input type="checkbox" name="candidate" value="Candidate 2"> Candidate 2</li>
+            <li><input type="checkbox" name="candidate" value="Candidate 3"> Candidate 3</li>
+	    <li><input type="checkbox" name="candidate" value="Candidate 4"> Candidate 4</li>
+	    <li><input type="checkbox" name="candidate" value="Candidate 5"> Candidate 5</li>
+ 	    <li><input type="checkbox" name="candidate" value="Candidate 6"> Candidate 6</li>
+            <li><input type="checkbox" name="candidate" value="Candidate 7"> Candidate 7</li>
+            <li><input type="checkbox" name="candidate" value="Candidate 8"> Candidate 8</li>
+	    <li><input type="checkbox" name="candidate" value="Candidate 9"> Candidate 9</li>
+	    <li><input type="checkbox" name="candidate" value="Candidate 10"> Candidate 10</li>
+ 	    <li><input type="checkbox" name="candidate" value="Candidate 11"> Candidate 11</li>
+            <li><input type="checkbox" name="candidate" value="Candidate 12"> Candidate 12</li>
+            <li><input type="checkbox" name="candidate" value="Candidate 13"> Candidate 13</li>
+	    <li><input type="checkbox" name="candidate" value="Candidate 14"> Candidate 14</li>
+	    <li><input type="checkbox" name="candidate" value="Candidate 15"> Candidate 15</li>
+ 	    <li><input type="checkbox" name="candidate" value="Candidate 16"> Candidate 6</li>
+            <li><input type="checkbox" name="candidate" value="Candidate 17"> Candidate 7</li>
+            <li><input type="checkbox" name="candidate" value="Candidate 18"> Candidate 8</li>
+            <li><input type="checkbox" name="candidate" value="Candidate 17"> Candidate 17</li>
+        </ul>
+
+        <h2>Your Ballot:</h2>
+        <ul>
+            <!-- Selected candidates will be displayed here -->
+        </ul>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        // JavaScript to handle user interactions
+        document.addEventListener("DOMContentLoaded", function () {
+            const form = document.getElementById("electionPollForm");
+            const checkboxes = form.querySelectorAll("input[type='checkbox']");
+            const selectedCandidatesList = form.querySelector("ul");
+
+            form.addEventListener("submit", function (event) {
+                event.preventDefault();
+
+                // Count the number of selected candidates
+                const selectedCandidates = Array.from(checkboxes)
+                    .filter(candidate => candidate.checked)
+                    .map(candidate => candidate.value);
+
+                // Check if the number of selected candidates is not more than 8
+                if (selectedCandidates.length <= 8) {
+                    // Display the selected candidates
+                    selectedCandidatesList.innerHTML = "";
+                    selectedCandidates.forEach(candidate => {
+                        const listItem = document.createElement("li");
+                        listItem.textContent = candidate;
+                        selectedCandidatesList.appendChild(listItem);
+                    });
+                } else {
+                    alert("You selected more than 8 candidates. Please select up to 8 candidates.");
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+    <script src="script.js"></script>
+</body>
+</html>
