@@ -24,7 +24,7 @@ Feel free to modify the HTML and JavaScript code to suit your specific requireme
 
 ## Author
 
-[Your Name]
+[Sagar Waghmare]
 
 ## License
 
